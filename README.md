@@ -45,4 +45,4 @@ To change Odoo configuration, edit file: **etc/odoo.conf**.
 
 ![odoo-12-apps-docker](screenshots/odoo-12-apps-screenshot.png)
 
-![odoo-12-sales](screenshots/odoo-12-sales-screen.png)
+![odoo-12-sales](screenshots/odoo-12-sales-screen.png)# tmpl12
