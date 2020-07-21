@@ -2,22 +2,34 @@ version: '2'
 services:
   db:
     image: postgres:9.5
+    networks:
+      - pg
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres
-    restart: always             # run as a service
+    restart: unless-stopped             # run as a service
 
   odoo12:
     image: odoo:12.0
+    networks:
+      - pg
     depends_on:
       - db
     ports:
-      - "8071:8069"
+      - "12000:8069"
     tty: true
     command: -- --dev=reload
 #    command: odoo scaffold /mnt/extra-addons/test_module
     volumes:
-      - ./addons:/mnt/extra-addons
+      # - ./addons:/mnt/extra-addons
       - ./etc:/etc/odoo
-    restart: always             # run as a service
+      - ~/odoo/add12/reporting-engine:/mnt/reporting-engine
+      - ~/odoo/add12/server-tools:/mnt/server-tools
+      - ~/odoo/add12/server-ux:/mnt/server-ux
+      - ~/odoo/add12/stock-logistics-workflow:/mnt/stock-logistics-workflow
+      - ~/odoo/add12/prune12:/mnt/prune12
+    restart: unless-stopped             # run as a service
+networks:
+    pg: 
+        driver: bridge
