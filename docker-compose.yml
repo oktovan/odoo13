@@ -24,17 +24,31 @@ services:
         #  - "12071:8071"  
     tty: true
     command: -- --dev=reload
-#    command: odoo scaffold /mnt/extra-addons/test_module
     volumes:
       - ./etc:/etc/odoo
       - ./data:/var/lib/odoo
       - ~/odoo/add12/reporting-engine:/mnt/reporting-engine
-      - ~/odoo/add12/addons:/mnt/extra-addons
-      # ~/odoo/add12/account-financial-report:/mnt/account-financial-report
       - ~/odoo/add12/server-tools:/mnt/server-tools
       - ~/odoo/add12/server-ux:/mnt/server-ux
       - ~/odoo/add12/stock-logistics-workflow:/mnt/stock-logistics-workflow
+      - ~/odoo/add12/stock-logistics-warehouse:/mnt/stock-logistics-warehouse
+      - ~/odoo/add12/stock-logistics-barcode:/mnt/stock-logistics-barcode
       - ~/odoo/add12/prune12:/mnt/prune12
+      # - ~/odoo/add12/product-variant:/mnt/product-variant
+      # - ~/odoo/add12/account-analytic:/mnt/account-analytic
+      - ~/odoo/add12/stock-logistics-transport:/mnt/stock-logistics-transport
+      # - ~/odoo/add12/purchase-workflow:/mnt/purchase-workflow
+      # - ~/odoo/add12/sale-workflow:/mnt/sale-workflow
+      # - ~/odoo/add12/product-attribute:/mnt/product-attribute
+      - ~/odoo/add12/web:/mnt/web
+      # - ~/odoo/add12/mis-builder:/mnt/mis-builder
+      # - ~/odoo/add12/account-financial-reporting:/mnt/account-financial-reporting 
+      # - ~/odoo/add12/partner-contact:/mnt/partner-contact
+      # - ~/odoo/add12/account-invoicing:/mnt/account-invoicing
+      # - ~/odoo/add12/intrastat:/mnt/intrastat
+      # - ~/odoo/add12/contract:/mnt/contract
+      # - ~/odoo/add12/operating-unit:/mnt/operating-unit --> masih error
+      # - ~/odoo/add12/manufacture:/mnt/manufacture
     restart: unless-stopped             # run as a service
 networks:
     pg12b: 
