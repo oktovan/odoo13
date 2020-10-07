@@ -1,57 +1,61 @@
 version: '2'
 services:
-  db12b:
+  db13:
     image: postgres:10.0
     networks:
-      - pg12b
+      - pg13
     environment:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - POSTGRES_DB=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - odoo-db-data:/var/lib/postgresql/data/pgdata
+      - odoo-db13-data:/var/lib/postgresql/data/pgdata
     restart: unless-stopped             # run as a service
 
-  odoo12:
-    image: oktovan/odoo12:0.1
+  odoo13:
+    image: odoo:13.0
     networks:
-      - pg12b
+      - pg13
     depends_on:
-      - db12b
+      - db13
     ports:
-      - "12002:8069"
+      - "13000:8069"
         #  - "12071:8071"  
     tty: true
     command: -- --dev=reload
     volumes:
       - ./etc:/etc/odoo
-      - ./data:/var/lib/odoo
-      - ~/odoo/add12/reporting-engine:/mnt/reporting-engine
-      - ~/odoo/add12/server-tools:/mnt/server-tools
-      - ~/odoo/add12/server-ux:/mnt/server-ux
-      - ~/odoo/add12/stock-logistics-workflow:/mnt/stock-logistics-workflow
-      - ~/odoo/add12/stock-logistics-warehouse:/mnt/stock-logistics-warehouse
-      - ~/odoo/add12/stock-logistics-barcode:/mnt/stock-logistics-barcode
-      - ~/odoo/add12/prune12:/mnt/prune12
-      # - ~/odoo/add12/product-variant:/mnt/product-variant
-      # - ~/odoo/add12/account-analytic:/mnt/account-analytic
-      - ~/odoo/add12/stock-logistics-transport:/mnt/stock-logistics-transport
-      # - ~/odoo/add12/purchase-workflow:/mnt/purchase-workflow
-      # - ~/odoo/add12/sale-workflow:/mnt/sale-workflow
-      # - ~/odoo/add12/product-attribute:/mnt/product-attribute
-      - ~/odoo/add12/web:/mnt/web
-      # - ~/odoo/add12/mis-builder:/mnt/mis-builder
-      # - ~/odoo/add12/account-financial-reporting:/mnt/account-financial-reporting 
-      # - ~/odoo/add12/partner-contact:/mnt/partner-contact
-      # - ~/odoo/add12/account-invoicing:/mnt/account-invoicing
-      # - ~/odoo/add12/intrastat:/mnt/intrastat
-      # - ~/odoo/add12/contract:/mnt/contract
-      # - ~/odoo/add12/operating-unit:/mnt/operating-unit --> masih error
-      # - ~/odoo/add12/manufacture:/mnt/manufacture
+      - odoo-web13-data:/var/lib/odoo
+      # - ~/odoo/add13/addons:/mnt/extra-addons
+      - ~/odoo/add13/reporting-engine:/mnt/reporting-engine
+      - ~/odoo/add13/server-tools:/mnt/server-tools
+      - ~/odoo/add13/server-ux:/mnt/server-ux
+      - ~/odoo/add13/stock-logistics-workflow:/mnt/stock-logistics-workflow
+      - ~/odoo/add13/stock-logistics-warehouse:/mnt/stock-logistics-warehouse
+      - ~/odoo/add13/stock-logistics-barcode:/mnt/stock-logistics-barcode
+      - ~/odoo/add13/prune13:/mnt/prune13
+      # - ~/odoo/add13/prune-nle:/mnt/prune-nle
+      # - ~/odoo/add13/prune-nle:/mnt/prune-nle
+      # - ~/odoo/add13/product-variant:/mnt/product-variant
+      # - ~/odoo/add13/account-analytic:/mnt/account-analytic
+      - ~/odoo/add13/stock-logistics-transport:/mnt/stock-logistics-transport
+      # - ~/odoo/add13/purchase-workflow:/mnt/purchase-workflow
+      # - ~/odoo/add13/sale-workflow:/mnt/sale-workflow
+      # - ~/odoo/add13/product-attribute:/mnt/product-attribute
+      - ~/odoo/add13/web:/mnt/web
+      # - ~/odoo/add13/mis-builder:/mnt/mis-builder
+      # - ~/odoo/add13/account-financial-reporting:/mnt/account-financial-reporting 
+      # - ~/odoo/add13/partner-contact:/mnt/partner-contact
+      # - ~/odoo/add13/account-invoicing:/mnt/account-invoicing
+      # - ~/odoo/add13/intrastat:/mnt/intrastat
+      # - ~/odoo/add13/contract:/mnt/contract
+      # - ~/odoo/add13/operating-unit:/mnt/operating-unit --> masih error
+      # - ~/odoo/add13/manufacture:/mnt/manufacture
     restart: unless-stopped             # run as a service
 networks:
-    pg12b: 
+    pg13: 
         driver: bridge
 volumes:
-    odoo-db-data:
+    odoo-db13-data:
+    odoo-web13-data:        
