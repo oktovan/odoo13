@@ -10,7 +10,7 @@ services:
       - POSTGRES_DB=postgres
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
-      - odoo-db13-data:/var/lib/postgresql/data/pgdata
+      - odoo-db13a-data:/var/lib/postgresql/data/pgdata
     restart: unless-stopped             # run as a service
 
   odoo13:
@@ -41,7 +41,7 @@ services:
       # - ~/odoo/add13/account-analytic:/mnt/account-analytic
       - ~/odoo/add13/stock-logistics-transport:/mnt/stock-logistics-transport
       # - ~/odoo/add13/purchase-workflow:/mnt/purchase-workflow
-      # - ~/odoo/add13/sale-workflow:/mnt/sale-workflow
+      - ~/odoo/add13/sale-workflow:/mnt/sale-workflow
       # - ~/odoo/add13/product-attribute:/mnt/product-attribute
       - ~/odoo/add13/web:/mnt/web
       # - ~/odoo/add13/mis-builder:/mnt/mis-builder
@@ -50,12 +50,13 @@ services:
       # - ~/odoo/add13/account-invoicing:/mnt/account-invoicing
       # - ~/odoo/add13/intrastat:/mnt/intrastat
       # - ~/odoo/add13/contract:/mnt/contract
-      # - ~/odoo/add13/operating-unit:/mnt/operating-unit --> masih error
+      - ~/odoo/add13/operating-unit:/mnt/operating-unit 
+      # --> masih error
       # - ~/odoo/add13/manufacture:/mnt/manufacture
     restart: unless-stopped             # run as a service
 networks:
     pg13: 
         driver: bridge
 volumes:
-    odoo-db13-data:
+    odoo-db13a-data:
     odoo-web13-data:        
