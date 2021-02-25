@@ -50,6 +50,7 @@ services:
       # - ~/odoo/add13/account-invoicing:/mnt/account-invoicing
       # - ~/odoo/add13/intrastat:/mnt/intrastat
       # - ~/odoo/add13/contract:/mnt/contract
+      - ~/odoo/add13/project:/mnt/project
       - ~/odoo/add13/operating-unit:/mnt/operating-unit 
       # --> masih error
       # - ~/odoo/add13/manufacture:/mnt/manufacture
